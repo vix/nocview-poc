@@ -1,0 +1,45 @@
+<div ng-controller="BuildingListCtrl">
+
+<h3>List of buildings</h3>
+
+<!--button class="btn btn-success" ng-click="editBuidling('new')" data-toggle="modal" href="#editModal">
+<i class="icon-plus icon-white"></i> Create New Building</button-->
+
+
+<h2>Buildings</h2>
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+      <!--Sidebar content-->
+      Search: <input ng-model="query">
+      Sort by:
+      <select ng-model="orderProp">
+	<option value="name">Alphabetical</option>
+	<option value="description">Description</option>
+      </select>
+    </div>
+    <div class="span10">
+     <!-- Table content-->
+     <table class="table table-striped">
+       <thead>
+	 <tr>
+	   <th>Name</th>
+	   <th>Description</th>
+	   <th></th>
+	 </tr>
+       </thead>
+       <tbody>
+	 <tr ng-repeat="building in buildings | filter: query | orderBy: orderProp">
+	   <td><a href="#/building/{{building.id}}">{{building.name}}</a></td>
+	   <td>{{building.description}}</td>
+	   <td>
+	     <a ng-click="editUser(user.id)" class="btn btn-small btn-primary">edit</a>
+             <a ng-click="deleteUser(user.id)" class="btn btn-small btn-danger">delete</a>
+	   </td>
+	 </tr>
+       </tbody>
+     </table>
+    <a ng-click="createNewUser()" class="btn btn-small">create new user</a>
+   </div><!-- row -->
+  </div><!-- container -->
+</div>
