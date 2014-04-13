@@ -1,7 +1,7 @@
 package Manoc::Controller::Api::Building;
 use Moose;
 
-BEGIN { extends 'Manoc::ControllerBase::REST' }
+BEGIN { extends 'Manoc::ControllerBase::ApiREST' }
 
 use namespace::autoclean;
 __PACKAGE__->config
@@ -13,6 +13,7 @@ __PACKAGE__->config
           }
       },
       class            => 'DB::Building',
+      data_root        => 'data',
       create_requires  => ['name', 'description'],
       create_allows    => ['notes'],
       update_allows    => ['name', 'description', 'notes' ],

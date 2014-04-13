@@ -1,4 +1,4 @@
-package Manoc::ControllerBase::REST;
+package Manoc::ControllerBase::ApiREST;
 
 use strict;
 use warnings;

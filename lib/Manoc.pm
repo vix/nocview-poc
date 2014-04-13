@@ -22,6 +22,18 @@ use Catalyst qw/
     Static::Simple
 /;
 
+my @todo = qw/
+    Authentication
+    Authorization::Roles
+
+    Session
+    Session::Store::DBI
+    Session::State::Cookie
+
+    StackTrace
+/;
+
+
 extends 'Catalyst';
 
 our $VERSION = '2.99';
@@ -43,6 +55,56 @@ __PACKAGE__->config(
 	dirs => [
 	    'static',
 	    ]
+    },
+
+    'Plugin::Authentication'                    => {
+        default_realm => 'progressive',
+        realms        => {
+            progressive => {
+                class  => 'Progressive',
+                realms => [ 'normal', 'agents' ],
+            },
+            normal => {
+                credential => {
+                    class              => 'Password',
+                    password_field     => 'password',
+                    password_type      => 'hashed',
+                    password_hash_type => 'MD5'
+                },
+                store => {
+                    class         => 'DBIx::Class',
+                    user_model    => 'ManocDB::User',
+                    role_relation => 'roles',
+                    role_field    => 'role',
+                }
+            },
+            agents => {
+                credential => {
+                    class              => 'HTTP',
+                    type               => 'basic',      # 'digest' or 'basic'
+                    password_field     => 'password',
+                    username_field     => 'login',
+                    password_type      => 'hashed',
+                    password_hash_type => 'MD5',
+                },
+                store => {
+                    class         => 'DBIx::Class',
+                    user_model    => 'ManocDB::User',
+                    role_relation => 'roles',
+                    role_field    => 'role',
+                }
+            },
+        },
+    },
+
+    #remove stale sessions from db
+    'Plugin::Session' => {
+        expires           => 28800,
+        dbi_dbh           => 'ManocDB',
+        dbi_table         => 'sessions',
+        dbi_id_field      => 'id',
+        dbi_data_field    => 'session_data',
+        dbi_expires_field => 'expires',
     },
 
     # Disable deprecated behavior needed by old applications
@@ -73,7 +135,7 @@ L<Manoc::Controller::Root>, L<Catalyst>
 
 =head1 AUTHOR
 
-Gabriele
+See README
 
 =head1 LICENSE
 

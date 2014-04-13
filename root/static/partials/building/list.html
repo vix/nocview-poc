@@ -1,16 +1,11 @@
 <div ng-controller="BuildingListCtrl">
 
-<h3>List of buildings</h3>
-
-<!--button class="btn btn-success" ng-click="editBuidling('new')" data-toggle="modal" href="#editModal">
-<i class="icon-plus icon-white"></i> Create New Building</button-->
-
-
 <h2>Buildings</h2>
 <div class="container-fluid">
   <div class="row-fluid">
     <div class="span2">
       <!--Sidebar content-->
+      <button class="btn btn-success" ng-click="createBuilding()">Create New</button>
       Search: <input ng-model="query">
       Sort by:
       <select ng-model="orderProp">
@@ -33,13 +28,11 @@
 	   <td><a href="#/building/{{building.id}}">{{building.name}}</a></td>
 	   <td>{{building.description}}</td>
 	   <td>
-	     <a ng-click="editUser(user.id)" class="btn btn-small btn-primary">edit</a>
-             <a ng-click="deleteUser(user.id)" class="btn btn-small btn-danger">delete</a>
+	     <a ng-click="editBuilding(building.id)" class="btn btn-small btn-primary">edit</a>
+             <a ng-click="deleteBuilding(building.id)" class="btn btn-small btn-danger">delete</a>
 	   </td>
 	 </tr>
        </tbody>
      </table>
-    <a ng-click="createNewUser()" class="btn btn-small">create new user</a>
    </div><!-- row -->
-  </div><!-- container -->
-</div>
+   </div><!-- container -->   
