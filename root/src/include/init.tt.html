@@ -3,15 +3,25 @@
                  c.uri_for('/static/lib/css/bootstrap.min.css'),
                  c.uri_for('/static/lib/css/bootstrap-theme.min.css'),
                  c.uri_for('/static/lib/css/style.css')      
-              ]
-   link_js  = [ 
-                 c.uri_for('/static/lib/js/jquery.min.js'),
-                 c.uri_for('/static/lib/js/bootstrap.min.js'),
-                 c.uri_for('/static/lib/js/angular.min.js'),
-                 c.uri_for('/static/lib/js/angular-route.min.js'),
-                 c.uri_for('/static/lib/js/angular-resource.min.js'),
-                 c.uri_for('/static/js/manoc.js')
-                 c.uri_for('/static/js/services.js')
-                 c.uri_for('/static/js/controllers.js')
-              ]
+              ];
+   link_libjs_min = [
+                     c.uri_for('/static/lib/js/jquery.min.js'),
+                     c.uri_for('/static/lib/js/bootstrap.min.js'),
+                     c.uri_for('/static/lib/js/angular.min.js'),
+                     c.uri_for('/static/lib/js/angular-route.min.js'),
+                     c.uri_for('/static/lib/js/angular-resource.min.js'),
+                   ];
+   link_libjs_full  = [ 
+                        c.uri_for('/static/lib/js/jquery.js'),
+                        c.uri_for('/static/lib/js/bootstrap.js'),
+                        c.uri_for('/static/lib/js/angular.js'),
+                        c.uri_for('/static/lib/js/angular-route.js'),
+                        c.uri_for('/static/lib/js/angular-resource.js'),
+                      ];
+    link_libjs_manoc = [
+                         c.uri_for('/static/js/manoc.js'),
+                         c.uri_for('/static/js/services.js'),
+                         c.uri_for('/static/js/controllers.js'),
+                      ];
+    link_js = link_libjs_full.merge(link_libjs_manoc)
 -%]

@@ -1,13 +1,10 @@
-
 'use strict';
-
 /* Controllers */
 var app = angular.module('manocApp', [
     'ngRoute',
     'manocControllers',
-    'apiServices',
+    'manocServices',
 ]);
-
 app.config(function($routeProvider) {
   $routeProvider
 	.when('/building', {
