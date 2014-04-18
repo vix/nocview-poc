@@ -17,9 +17,10 @@ use Catalyst::Runtime 5.90;
 #                 directory
 
 use Catalyst qw/
-    -Debug
     ConfigLoader
     Static::Simple
+
+    StackTrace
 /;
 
 my @todo = qw/
@@ -29,8 +30,6 @@ my @todo = qw/
     Session
     Session::Store::DBI
     Session::State::Cookie
-
-    StackTrace
 /;
 
 

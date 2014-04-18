@@ -15,12 +15,11 @@ Build.bat
 /MYMETA.*
 nytprof.out
 /pm_to_blib
+/dbicdh
+/root/generated-sources
+manoc.db
 *.o
 *.bs
-
-/dbicdh
-manoc.db
-
 *~
 *.bak
 *.DS_Store

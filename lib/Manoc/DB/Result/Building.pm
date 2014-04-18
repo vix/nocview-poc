@@ -36,4 +36,10 @@ __PACKAGE__->has_many(
     'building', { cascade_delete => 0 }
 );
 
+sub validate {
+  my ($self) = @_;
+
+  
+}
+
 1;
