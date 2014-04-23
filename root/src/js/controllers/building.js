@@ -1,8 +1,3 @@
-var manocControllers = angular.module('manocControllers', []);
-
-manocControllers.controller('TacticalViewCtrl', function($scope) {
-});
-
 manocControllers.controller('BuildingListCtrl', ['$scope', 'Building', '$location', function($scope, Building, $location) {
     $scope.buildings = Building.query();
     $scope.orderProp = 'name';

@@ -1,5 +1,4 @@
 'use strict';
-
 var module = angular.module("manocResource", ["ngResource"]);
 module.factory( 'ManocResource', [ '$resource', '$http', function( $resource, $http ) {
     return function( url, params, methods ) {
@@ -33,12 +32,6 @@ module.factory( 'ManocResource', [ '$resource', '$http', function( $resource, $h
 	return resource;
     };
  }]);
-
-
-var module = angular.module("manocServices", ["manocResource"]);
-// building Resource
-module.factory("Building", [ 'ManocResource', function ($resource) {
-    return $resource("/api/building/:buildingId",  {
-	'buildingId': '@id'
-    });
-}]);
+[%   FOREACH service IN services           -%]
+[%-      INCLUDE "services/${service}.js"  -%]
+[%-   END                                  -%]
