@@ -26,19 +26,19 @@ sub get_filename {
 }
 
 sub download_extract {
-   my ($url, $filename) = @_;
+   my $url = shift;
+
+   my $target = "$DOWNLOAD_DIR/".get_filename($url); 
    
-   $filename ||= "$DOWNLOAD_DIR/".get_filename($url); 
-   
-   -f $filename || download($url, $filename);
-   system("unzip", $filename, "-d", $EXTRACT_DIR);
+   -f $target || download($url);
+   system("unzip", $target, "-d", $EXTRACT_DIR);
 }
 
 sub download {
-    my ($url, $filename) = @_;
+    my $url = shift;
 
-    $filename ||= get_filename($url); 
-    system ("curl", "-L", "-s", "-S", $url, "-o", "$EXTRACT_DIR/$filename");
+    my $filename = get_filename($url); 
+    system ("curl", "-s", "-S", "-L", $url, "-o", "$DOWNLOAD_DIR/$filename");
 }
 
 sub install_file {
